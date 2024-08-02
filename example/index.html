@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<style>
+  :root[data-theme=dark] {
+    color-scheme: dark;
+  }
+</style>
+
+<head>
+  <meta name="theme-color" content="#000000" />
+</head>
+
+<body>
+  <button id="theme-status" onclick="changeTheme()">
+    切换Theme
+  </button>
+  <script>
+    const themeTuple = ["dark", "light"];
+
+    window.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset["theme"] = window.theme;
+    document.getElementById("theme-status").innerText = `当前主题: ${window.theme}`;
+
+    const changeTheme = () => {
+      const theme = themeTuple.at(themeTuple.indexOf(window.theme) - 1);
+      document.documentElement.dataset["theme"] = theme;
+      localStorage.setItem("theme", theme);
+      document.getElementById("theme-status").innerText = `当前主题: ${window.theme}`;
+      console.log(theme)
+    };
+  </script>
+  <script src="../dist/index.mjs"></script>
+</body>
+
+</html>
