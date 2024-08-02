@@ -1,6 +1,6 @@
 {
-  "name": "@holy-two/holy-theme",
-  "version": "0.0.1",
+  "name": "@holy-two/data-theme",
+  "version": "0.0.0",
   "description": "A setting for mounting themes.",
   "exports": {
     "import": "./dist/index.mjs",
