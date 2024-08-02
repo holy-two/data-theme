@@ -1,7 +1,7 @@
 {
   "name": "@holy-two/holy-theme",
   "version": "0.0.1",
-  "description": "",
+  "description": "A setting for mounting themes.",
   "exports": {
     "import": "./dist/index.mjs",
     "require": "./dist/index.cjs"
