@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-<style>
-  :root[data-theme=dark] {
-    color-scheme: dark;
-  }
-</style>
-
-<head>
-  <meta name="theme-color" content="#000000" />
-</head>
-
-<body>
-  <button id="theme-status" onclick="changeTheme()">
-    切换Theme
-  </button>
-  <script>
-    const themeTuple = ["dark", "light"];
-
-    window.theme = localStorage.getItem("theme") || "light";
-    document.documentElement.dataset["theme"] = window.theme;
-    document.getElementById("theme-status").innerText = `当前主题: ${window.theme}`;
-
-    const changeTheme = () => {
-      const theme = themeTuple.at(themeTuple.indexOf(window.theme) - 1);
-      document.documentElement.dataset["theme"] = theme;
-      localStorage.setItem("theme", theme);
-      document.getElementById("theme-status").innerText = `当前主题: ${window.theme}`;
-      console.log(theme)
-    };
-  </script>
-  <script src="../dist/index.mjs"></script>
-</body>
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue + TS</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
