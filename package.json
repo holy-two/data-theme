@@ -7,12 +7,16 @@
     "require": "./dist/index.cjs"
   },
   "scripts": {
-    "build": "unbuild"
+    "preinstall": "npx only-allow pnpm",
+    "dev": "pnpm run build && pnpm -C  example dev",
+    "build": "tsup src/index.ts --format esm,cjs,iife --dts --clean"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "unbuild": "^2.0.0"
+    "http-server": "^14.1.1",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.3"
   }
 }
