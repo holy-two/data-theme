@@ -1,16 +1,7 @@
-Object.defineProperty(window, "theme", {
-  get: () =>
-    localStorage.getItem("theme") ??
-    ["dark", "light"][
-    +!window.matchMedia?.("(prefers-color-scheme: dark)")?.matches
-    ],
-});
+export * from "./themes"
+import toggle from "./toggle"
+import init from "./init"
 
-document.documentElement.dataset["theme"] = window.theme;
+init()
 
-export { };
-declare global {
-  interface Window {
-    theme: string;
-  }
-}
+export { init, toggle }
