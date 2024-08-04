@@ -1,16 +1,21 @@
 {
   "name": "@holy-two/data-theme",
+  "version": "0.0.1",
   "description": "A setting for mounting themes.",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "dev": "pnpm -C ./example dev",
-    "build": "pnpm -C ./package build"
+    "build": "tsup"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^5.5.3"
+    "terser": "^5.31.3",
+    "tsup": "^8.2.4"
   }
 }

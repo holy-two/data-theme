@@ -5,5 +5,8 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "esModuleInterop": true
-  }
+  },
+  "include": ["package/**/*"],
+
+  "exclude": ["node_modules", "dist"]
 }

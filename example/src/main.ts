@@ -1,5 +1,5 @@
 import "./style.css"
-import { toggle } from "../../../dist/"
+import { toggle } from "@holy-two/data-theme"
 
 const button = document.querySelector("button")
 
