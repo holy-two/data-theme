@@ -1,4 +1,4 @@
-# holy-theme
+# @holy-two/holy-theme
 
 set theme variable `window.theme: 'light'|'dark'`
 
