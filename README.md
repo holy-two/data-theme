@@ -1,6 +1,8 @@
 # holy-theme
 
-A setting for mounting themes.
+set theme variable `window.theme: 'light'|'dark'`
+
+It is stored in `document.documentElement.dataset` and `localStorage`
 
 ## install
 
