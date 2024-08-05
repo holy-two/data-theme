@@ -12,7 +12,7 @@ export default defineConfig([
     legacyOutput: true,
   },
   {
-    entry: ["src/index.ts", "src/init.ts", "src/toggle.ts"],
+    entry: ["src/index.ts", "src/init.ts", "src/toggle.ts", "src/themes.ts"],
     target: "esnext",
     format: ["esm"],
     dts: true,
