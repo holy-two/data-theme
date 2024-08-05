@@ -1,6 +1,6 @@
-# @holy-two/holy-theme
+# @holy-two/data-theme
 
-set theme variable `window.theme: 'light'|'dark'`
+set global theme variable `theme: 'light'|'dark'`
 
 It is stored in `document.documentElement.dataset` and `localStorage`
 
