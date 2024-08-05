@@ -10,7 +10,9 @@ pnpm i @holy-two/data-theme
 
 ## use
 
-You need to prevent [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) yourself. In [Astro](https://astro.build/) it's easy:
+You need to prevent [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) yourself.
+
+If you don't care:
 
 ```tsx
 // => (await import("@holy-two/data-theme/dist/init"))()
@@ -20,6 +22,8 @@ export default () => <button onclick={toggle}> toggle </button>
 ```
 
 ## iife
+
+In [Astro](https://astro.build/) it's easy:
 
 ```astro
 ---
