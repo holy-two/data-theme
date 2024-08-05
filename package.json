@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev vite": "pnpm -C ./example/vite dev",
+    "vite:dev": "pnpm -C ./example/vite dev",
+    "astro:dev": "pnpm -C ./example/astro dev",
     "build": "pnpm -C ./package build"
   },
   "keywords": [],

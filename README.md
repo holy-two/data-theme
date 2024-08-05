@@ -8,32 +8,25 @@ A setting for mounting themes.
 pnpm i @holy-two/data-theme
 ```
 
-## effect
+## use
 
-use cdn
+You need to prevent [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) yourself. In [Astro](https://astro.build/) it's easy:
 
-```html
-<script src="@holy-two/data-theme/dist/iife"></script>
-```
-
-or
-
-```ts
-import "@holy-two/data-theme"
-```
-
-or
-
-```ts
+```tsx
+// => (await import("@holy-two/data-theme/dist/init"))()
 import toggle from "@holy-two/data-theme"
+
+export default () => <button onclick={toggle}> toggle </button>
 ```
 
-or
+## iife
 
-```ts
-import init from "@holy-two/data-theme/dist/init"
+```astro
+---
+import iife from "@holy-two/data-theme/dist/iife?url"
+---
 
-init()
+<script is:inline fetchpriority="high" src={iife}></script>
 ```
 
 ## without effect
