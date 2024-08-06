@@ -1,4 +1,4 @@
-export { Themes } from "./themes"
+export { Theme } from "./themes"
 import themes from "./themes"
 import toggle from "./toggle"
 import init from "./init"

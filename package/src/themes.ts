@@ -1,10 +1,10 @@
 const themes = ["dark", "light"] as const
 
-export type Themes = (typeof themes)[number]
+export type Theme = (typeof themes)[number]
 
 declare global {
   interface Window {
-    readonly theme: Themes
+    readonly theme: Theme
   }
 }
 
