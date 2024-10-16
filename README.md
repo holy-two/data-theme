@@ -17,7 +17,7 @@ You need to prevent [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_conte
 If you don't care:
 
 ```tsx
-// => (await import("@holy-two/data-theme/dist/init"))()
+// implicit call => (await import("@holy-two/data-theme/dist/init"))()
 import toggle from "@holy-two/data-theme"
 
 export default () => <button onclick={toggle}> toggle </button>
