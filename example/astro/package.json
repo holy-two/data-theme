@@ -10,8 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.13.1",
-    "@astrojs/check": "^0.9.1",
-    "@holy-two/data-theme": "workspace:*"
+    "@holy-two/data-theme": "workspace:*",
+    "astro": "^5.13.3"
   }
 }
