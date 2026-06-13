@@ -1,11 +1,10 @@
 {
   "name": "@holy-two/data-theme",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A setting for mounting themes.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-
   "files": [
     "dist"
   ],
