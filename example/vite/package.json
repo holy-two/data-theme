@@ -11,6 +11,6 @@
   "devDependencies": {
     "@holy-two/data-theme": "workspace:*",
     "typescript": "^5.9.2",
-    "vite": "^6.3.5"
+    "vite": "^7.3.3"
   }
 }

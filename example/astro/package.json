@@ -11,6 +11,6 @@
   },
   "dependencies": {
     "@holy-two/data-theme": "workspace:*",
-    "astro": "^5.13.3"
+    "astro": "^6.4.6"
   }
 }
