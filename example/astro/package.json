@@ -12,5 +12,8 @@
   "dependencies": {
     "@holy-two/data-theme": "workspace:*",
     "astro": "^6.4.6"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3"
   }
 }

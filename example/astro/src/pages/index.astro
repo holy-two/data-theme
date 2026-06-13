@@ -2,10 +2,181 @@
 import Layout from "../layouts/Layout.astro"
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Data Theme Demo">
   <main>
-    <button> toggle </button>
+    <h1>Data Theme Demo</h1>
+    
+    <section class="theme-controls">
+      <h2>Theme Controls</h2>
+      <p>Current theme: <strong id="current-theme"></strong></p>
+    </section>
+
+    <section class="color-showcase">
+      <h2>Color Showcase</h2>
+      <div class="color-grid">
+        <div class="color-card bg-primary">Primary</div>
+        <div class="color-card bg-secondary">Secondary</div>
+        <div class="color-card bg-surface">Surface</div>
+        <div class="color-card bg-background">Background</div>
+      </div>
+    </section>
+
+    <section class="typography-showcase">
+      <h2>Typography</h2>
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <p>This is a paragraph. The quick brown fox jumps over the lazy dog.</p>
+      <a href="#">This is a link</a>
+    </section>
+
+    <section class="card-showcase">
+      <h2>Cards</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Card Title</h3>
+          <p>Card content goes here.</p>
+          <button class="btn btn-primary">Action</button>
+        </div>
+        <div class="card">
+          <h3>Another Card</h3>
+          <p>More card content.</p>
+          <button class="btn btn-secondary">Secondary</button>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>
 
-<script src="/src/scripts/toggle.ts"></script>
+<script>
+  // Update theme display
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("current-theme")
+    if (el) {
+      el.textContent = window.theme
+    }
+    
+    // Watch for theme changes
+    const observer = new MutationObserver(() => {
+      if (el) {
+        el.textContent = window.theme
+      }
+    })
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ["data-theme"] 
+    })
+  })
+</script>
+
+<style>
+  /* Main content */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  section {
+    margin: 3rem 0;
+    padding: 2rem;
+    border-radius: 8px;
+    background: var(--color-surface, #f4f4f4);
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--color-text, #333);
+  }
+
+  /* Color showcase */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .color-card {
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+  }
+
+  .bg-primary { background: var(--color-primary, #007acc); }
+  .bg-secondary { background: var(--color-secondary, #6c757d); }
+  .bg-surface { background: var(--color-surface, #f4f4f4); color: var(--color-text, #333); }
+  .bg-background { background: var(--color-background, #ffffff); color: var(--color-text, #333); }
+
+  /* Typography */
+  .typography-showcase h1,
+  .typography-showcase h2,
+  .typography-showcase h3 {
+    color: var(--color-text, #333);
+    margin: 1rem 0;
+  }
+
+  .typography-showcase p {
+    color: var(--color-text-secondary, #666);
+    line-height: 1.6;
+  }
+
+  .typography-showcase a {
+    color: var(--color-primary, #007acc);
+    text-decoration: none;
+  }
+
+  .typography-showcase a:hover {
+    text-decoration: underline;
+  }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: var(--color-background, #fff);
+    border: 1px solid var(--color-border, #ddd);
+  }
+
+  .card h3 {
+    margin-top: 0;
+    color: var(--color-text, #333);
+  }
+
+  .card p {
+    color: var(--color-text-secondary, #666);
+    margin-bottom: 1rem;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: opacity 0.2s;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  .btn-primary {
+    background: var(--color-primary, #007acc);
+    color: white;
+  }
+
+  .btn-secondary {
+    background: var(--color-secondary, #6c757d);
+    color: white;
+  }
+</style>

@@ -1,6 +1,4 @@
 ---
-import iife from "@holy-two/data-theme/dist/iife?url"
-
 interface Props {
   title: string
 }
@@ -15,16 +13,169 @@ const { title } = Astro.props
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script is:inline fetchpriority="high" src={iife}></script>
+    <script is:inline>
+      (() => {
+        const themes = ["dark", "light"]
+        if (!window.hasOwnProperty("theme")) {
+          Object.defineProperty(window, "theme", {
+            get: () =>
+              localStorage.getItem("theme") ??
+              themes[+!window.matchMedia?.("(prefers-color-scheme: dark)")?.matches],
+          })
+        }
+        document.documentElement.dataset["theme"] = window.theme
+      })()
+    </script>
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style is:global">
+      /* Light theme (default) */
+      :root {
+        --color-primary: #007acc;
+        --color-secondary: #6c757d;
+        --color-background: #ffffff;
+        --color-surface: #f4f4f4;
+        --color-text: #333333;
+        --color-text-secondary: #666666;
+        --color-border: #dddddd;
+        color-scheme: light;
+      }
+
+      /* Dark theme */
+      :root[data-theme="dark"] {
+        --color-primary: #4da6ff;
+        --color-secondary: #a0aec0;
+        --color-background: #1a1a2e;
+        --color-surface: #252540;
+        --color-text: #e2e8f0;
+        --color-text-secondary: #a0aec0;
+        --color-border: #4a5568;
+        color-scheme: dark;
+      }
+    </style>
+    <style>
+      /* Theme Switch Container - Top Right */
+      .theme-switch-container {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+      }
+
+      /* Theme Switch */
+      .theme-switch {
+        position: relative;
+        display: inline-block;
+        width: 64px;
+        height: 32px;
+      }
+
+      .theme-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* Slider track */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      /* Knob - contains the icon */
+      .knob {
+        position: absolute;
+        height: 24px;
+        width: 24px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        font-size: 12px;
+        line-height: 1;
+      }
+
+      /* Checked state - track turns blue */
+      input:checked + .slider {
+        background-color: #007acc;
+      }
+
+      /* Checked state - move knob to right */
+      input:checked + .slider .knob {
+        transform: translateX(32px);
+      }
+    </style>
   </head>
   <body>
+    <!-- Theme Switch - Top Right Corner -->
+    <div class="theme-switch-container">
+      <label class="theme-switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider">
+          <span class="knob" id="knob-icon">☀️</span>
+        </span>
+      </label>
+    </div>
+
     <slot />
+
+    <script is:inline>
+      // Theme toggle logic
+      (() => {
+        const toggleInput = document.getElementById("theme-toggle")
+        const knobIcon = document.getElementById("knob-icon")
+        
+        // Function to update icon based on theme
+        function updateIcon(theme) {
+          if (knobIcon) {
+            knobIcon.textContent = theme === "dark" ? "🌙" : "☀️"
+          }
+        }
+        
+        // Set initial state
+        if (toggleInput) {
+          toggleInput.checked = window.theme === "dark"
+          updateIcon(window.theme)
+          
+          // Handle toggle
+          toggleInput.addEventListener("change", () => {
+            const newTheme = toggleInput.checked ? "dark" : "light"
+            document.documentElement.dataset.theme = newTheme
+            localStorage.setItem("theme", newTheme)
+            updateIcon(newTheme)
+            
+            // Update window.theme getter
+            Object.defineProperty(window, "theme", {
+              get: () => newTheme,
+            })
+          })
+        }
+        
+        // Watch for theme changes from other sources
+        const observer = new MutationObserver(() => {
+          const currentTheme = document.documentElement.dataset.theme
+          if (toggleInput) {
+            toggleInput.checked = currentTheme === "dark"
+            updateIcon(currentTheme)
+          }
+        })
+        observer.observe(document.documentElement, { 
+          attributes: true, 
+          attributeFilter: ["data-theme"] 
+        })
+      })()
+    </script>
   </body>
 </html>
-<style is:global>
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-  }
-</style>

@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "vite:dev": "pnpm -C ./example/vite dev",
     "astro:dev": "pnpm -C ./example/astro dev",
-    "build": "pnpm -C ./package build"
+    "build": "pnpm -C ./package build",
+    "dev": "concurrently -n build,astro -c blue,green \"pnpm -C ./package dev\" \"pnpm -C ./example/astro dev\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "node": ">=20.19.0"
   },
   "devDependencies": {
+    "concurrently": "^10.0.3",
     "typescript": "^5.9.2"
   }
 }
